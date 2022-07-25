@@ -1,0 +1,34 @@
+type Query {
+    cars: [ExtendedCar!]!
+    secretCars: [Car!]!
+}
+
+type Subscription {
+    carEvents: Car!
+    secretCarEvents: Car!
+}
+
+type Mutation {
+    carMutation(input: CarInput!): Car!
+}
+
+input CarInput{
+    id: ID!
+    name: String
+}
+
+type Car {
+    id: ID!
+    name: String!
+}
+
+type User {
+    id: ID!
+    name: String!
+}
+
+type ExtendedCar {
+    id: ID!
+    name: String!
+    owner: User
+}
