@@ -7,3 +7,13 @@ type Car {
     name: String!
 }
 
+scalar Upload
+
+type FileUploadResult {
+  id: String!
+}
+
+type Mutation {
+
+    fileUpload(file: Upload!): FileUploadResult!
+}
