@@ -1,20 +1,5 @@
 type Query {
-    cars: [ExtendedCar!]!
-    secretCars: [Car!]!
-}
-
-type Subscription {
-    carEvents: Car!
-    secretCarEvents: Car!
-}
-
-type Mutation {
-    carMutation(input: CarInput!): Car!
-}
-
-input CarInput{
-    id: ID!
-    name: String
+    cars: [Car!]!
 }
 
 type Car {
@@ -22,13 +7,13 @@ type Car {
     name: String!
 }
 
-type User {
-    id: ID!
-    name: String!
+scalar Upload
+
+type FileUploadResult {
+  id: String!
 }
 
-type ExtendedCar {
-    id: ID!
-    name: String!
-    owner: User
+type Mutation {
+
+    fileUpload(file: Upload!): FileUploadResult!
 }

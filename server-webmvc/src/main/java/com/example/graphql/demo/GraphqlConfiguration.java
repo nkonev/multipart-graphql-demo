@@ -24,7 +24,7 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
 @Configuration
 public class GraphqlConfiguration {
 
-    // TODO add to Spring Boot - seems it's possible not to declare scalar in schema but declare here
+    // TODO add to Spring Boot - seems it's possible not to declare scalar in schema but declare here - make it disableable
     @Bean
     public RuntimeWiringConfigurer runtimeWiringConfigurerUpload() {
 
