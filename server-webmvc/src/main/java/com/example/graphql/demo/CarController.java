@@ -36,7 +36,7 @@ public class CarController {
     public List<Car> getCars() {
         logger.info("Getting cars");
 
-        return List.of(new Car(1, "BMW", 1), new Car(2, "Toyota", 2));
+        return List.of(new Car(1, "BMW Webmvc", 1), new Car(2, "Toyota Webmvc", 2));
     }
 
     @SchemaMapping(typeName = "ExtendedCar", field = "owner")
