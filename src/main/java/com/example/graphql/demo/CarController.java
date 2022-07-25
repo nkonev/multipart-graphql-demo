@@ -4,21 +4,13 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.dataloader.DataLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cloud.sleuth.Tracer;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.BatchMapping;
-import org.springframework.graphql.data.method.annotation.MutationMapping;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
-import org.springframework.graphql.data.method.annotation.SubscriptionMapping;
+import org.springframework.graphql.data.method.annotation.*;
 import org.springframework.graphql.execution.BatchLoaderRegistry;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -27,23 +19,17 @@ import javax.validation.constraints.NotNull;
 import java.security.Principal;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 @Controller
 public class CarController {
 
-    private final Tracer tracer;
-
     private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
-    public CarController(BatchLoaderRegistry registry, UserDataLoader userDataLoader, Tracer tracer) {
+    public CarController(BatchLoaderRegistry registry, UserDataLoader userDataLoader) {
         registry.forTypePair(Integer.class, User.class).registerMappedBatchLoader(userDataLoader);
-        this.tracer = tracer;
     }
 
     @QueryMapping(name = "cars")
