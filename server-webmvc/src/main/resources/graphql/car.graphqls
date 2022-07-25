@@ -10,6 +10,7 @@ type Subscription {
 
 type Mutation {
     carMutation(input: CarInput!): Car!
+    fileUpload(file: Upload!): FileUploadResult!
 }
 
 input CarInput{
@@ -32,3 +33,11 @@ type ExtendedCar {
     name: String!
     owner: User
 }
+
+scalar Upload
+
+type FileUploadResult {
+  id: String!
+}
+
+

@@ -9,6 +9,16 @@ http://localhost:8899/graphiql
   }
 }
 
+curl --location --request POST 'http://localhost:8889/graphql' \
+--form 'operations="{ \"query\": \"mutation FileUpload($file: Upload!) {fileUpload(file: $file){id}}\" , \"variables\": {\"file\": null}}"' \
+--form 'file=@"/home/nkonev/Pictures/mad.jpg"' \
+--form 'map="{\"file\": [\"variables.file\"]}"'
+
+curl --location --request POST 'http://localhost:8899/graphql' \
+--form 'operations="{ \"query\": \"mutation FileUpload($file: Upload!) {fileUpload(file: $file){id}}\" , \"variables\": {\"file\": null}}"' \
+--form 'file=@"/home/nkonev/Pictures/mad.jpg"' \
+--form 'map="{\"file\": [\"variables.file\"]}"'
+
 echo -n 'admin:admin' | base64 -w0
 YWRtaW46YWRtaW4=
 
