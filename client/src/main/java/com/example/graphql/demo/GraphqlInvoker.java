@@ -28,7 +28,7 @@ public class GraphqlInvoker implements CommandLineRunner {
         Mono<ClientGraphQlResponse> execute = httpGraphQlClient
                 .document(doc)
                 .variable("file", null)
-                .upload("file", new ClassPathResource("/foo.txt"))
+                .file("file", new ClassPathResource("/foo.txt"))
                 .executeUpload();
         execute.block();
     }
