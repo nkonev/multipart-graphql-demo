@@ -19,6 +19,13 @@ curl --location --request POST 'http://localhost:8899/graphql' \
 --form 'file=@"/home/nkonev/Pictures/mad.jpg"' \
 --form 'map="{\"file\": [\"variables.file\"]}"'
 
+--- variation
+curl --location --request POST 'http://localhost:8889/graphql' \
+--form 'operations="{ \"query\": \"mutation FileUpload($file: Upload!) {fileUpload(file: $file){id}}\" , \"variables\": {\"file\": null}}"' \
+--form 'fileForm1=@"/home/nkonev/Pictures/mad.jpg"' \
+--form 'map="{\"fileForm1\": [\"variables.file\"]}"'
+
+
 echo -n 'admin:admin' | base64 -w0
 YWRtaW46YWRtaW4=
 
