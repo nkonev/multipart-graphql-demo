@@ -29,7 +29,7 @@ public class GraphqlInvoker implements CommandLineRunner {
                 .document(doc)
                 .variable("file", null)
                 .file("file", new ClassPathResource("/foo.txt"))
-                .executeUpload();
+                .executeFileUpload();
         execute.block();
     }
 }

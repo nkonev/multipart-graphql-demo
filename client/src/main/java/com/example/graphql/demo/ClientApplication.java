@@ -19,7 +19,7 @@ public class ClientApplication  {
 
     @Bean
     public HttpGraphQlClient httpGraphQlClient() {
-        return HttpGraphQlClient.builder().url("http://localhost:8899/graphql").build();
+        return HttpGraphQlClient.builder().url("http://localhost:8889/graphql").build();
     }
 
 
