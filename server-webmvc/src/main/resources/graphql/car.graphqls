@@ -11,6 +11,7 @@ type Subscription {
 type Mutation {
     carMutation(input: CarInput!): Car!
     fileUpload(file: Upload!): FileUploadResult!
+    multiFileUpload(files: [Upload!]): [FileUploadResult!]!
 }
 
 input CarInput{

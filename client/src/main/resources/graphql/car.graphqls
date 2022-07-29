@@ -16,4 +16,5 @@ type FileUploadResult {
 type Mutation {
 
     fileUpload(file: Upload!): FileUploadResult!
+    multiFileUpload(files: [Upload!]): [FileUploadResult!]!
 }

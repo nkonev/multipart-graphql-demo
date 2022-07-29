@@ -7,6 +7,8 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -19,6 +21,14 @@ public class FileController {
         logger.info("Upload file: name={}", file.getOriginalFilename());
 
         return new FileUploadResult(UUID.randomUUID());
+    }
+
+    @MutationMapping(name = "multiFileUpload")
+    public Collection<FileUploadResult> uploadMultiFiles(@Argument Collection<MultipartFile> files) {
+        for( MultipartFile file : files) {
+            logger.info("Upload file: name={}", file.getOriginalFilename());
+        }
+        return List.of(new FileUploadResult(UUID.randomUUID()));
     }
 
 }
