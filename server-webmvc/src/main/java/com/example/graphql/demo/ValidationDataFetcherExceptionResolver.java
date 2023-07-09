@@ -3,10 +3,9 @@ package com.example.graphql.demo;
 import graphql.GraphQLError;
 import graphql.GraphqlErrorBuilder;
 import graphql.schema.DataFetchingEnvironment;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter;
 import org.springframework.stereotype.Component;
-
-import javax.validation.ConstraintViolationException;
 
 // see here for another example https://github.com/spring-projects/spring-graphql/issues/160#issuecomment-979043065
 @Component
