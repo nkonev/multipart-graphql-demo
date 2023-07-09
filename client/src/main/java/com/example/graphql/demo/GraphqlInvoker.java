@@ -44,19 +44,8 @@ public class GraphqlInvoker implements CommandLineRunner {
                 emptyMap(),
                 fileVariables
         );
-        GraphQlResponse response = httpGraphQlClient.executeFileUpload("http://localhost:8889/graphql", request).block();
+        GraphQlResponse response = httpGraphQlClient.executeFileUpload("http://localhost:8899/graphql", request).block();
         LOGGER.info("Response is {}", response);
     }
 
-//    public void runOld(String... args) throws Exception {
-//        LOGGER.info("Hello");
-//        var doc = """
-//                mutation FileUpload($file: Upload!) {fileUpload(file: $file){id}}
-//                """;
-//        Mono<ClientGraphQlResponse> execute = httpGraphQlClient
-//                .document(doc)
-//                .fileVariable("file", new ClassPathResource("/foo.txt"))
-//                .executeFileUpload();
-//        execute.block();
-//    }
 }
