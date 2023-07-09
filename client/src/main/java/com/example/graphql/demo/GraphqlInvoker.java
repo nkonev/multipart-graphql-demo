@@ -1,16 +1,24 @@
 package com.example.graphql.demo;
 
+import name.nkonev.multipart.spring.graphql.client.MultipartClientGraphQlRequest;
+import name.nkonev.multipart.spring.graphql.client.MultipartGraphQlWebClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.graphql.GraphQlResponse;
 import org.springframework.graphql.client.ClientGraphQlResponse;
 import org.springframework.graphql.client.HttpGraphQlClient;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
+import static java.util.Collections.emptyMap;
+import static java.util.Collections.singletonMap;
 
 @Component
 public class GraphqlInvoker implements CommandLineRunner {
@@ -19,7 +27,7 @@ public class GraphqlInvoker implements CommandLineRunner {
 
 
     @Autowired
-    private HttpGraphQlClient httpGraphQlClient;
+    private MultipartGraphQlWebClient httpGraphQlClient;
 
     //@Override
     public void run(String... args) throws Exception {
@@ -27,22 +35,28 @@ public class GraphqlInvoker implements CommandLineRunner {
         var doc = """
                 mutation FileNUpload($files: [Upload!]) {multiFileUpload(files: $files){id}}
                 """;
-        Mono<ClientGraphQlResponse> execute = httpGraphQlClient
-                .document(doc)
-                .fileVariable("files", List.of(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt")))
-                .executeFileUpload();
-        execute.block();
+        java.util.Map<String, Object> fileVariables = singletonMap("files", Arrays.asList(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt")));
+        MultipartClientGraphQlRequest request = new MultipartClientGraphQlRequest(
+                doc,
+                null,
+                emptyMap(),
+                emptyMap(),
+                emptyMap(),
+                fileVariables
+        );
+        GraphQlResponse response = httpGraphQlClient.executeFileUpload("http://localhost:8889/graphql", request).block();
+        LOGGER.info("Response is {}", response);
     }
 
-    public void runOld(String... args) throws Exception {
-        LOGGER.info("Hello");
-        var doc = """
-                mutation FileUpload($file: Upload!) {fileUpload(file: $file){id}}
-                """;
-        Mono<ClientGraphQlResponse> execute = httpGraphQlClient
-                .document(doc)
-                .fileVariable("file", new ClassPathResource("/foo.txt"))
-                .executeFileUpload();
-        execute.block();
-    }
+//    public void runOld(String... args) throws Exception {
+//        LOGGER.info("Hello");
+//        var doc = """
+//                mutation FileUpload($file: Upload!) {fileUpload(file: $file){id}}
+//                """;
+//        Mono<ClientGraphQlResponse> execute = httpGraphQlClient
+//                .document(doc)
+//                .fileVariable("file", new ClassPathResource("/foo.txt"))
+//                .executeFileUpload();
+//        execute.block();
+//    }
 }

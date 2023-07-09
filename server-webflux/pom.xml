@@ -27,11 +27,10 @@
             <artifactId>spring-boot-starter-graphql</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.graphql</groupId>
-            <artifactId>spring-graphql</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <groupId>name.nkonev.multipart-spring-graphql</groupId>
+            <artifactId>multipart-spring-graphql</artifactId>
+            <version>0.10.6-SNAPSHOT</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -7,8 +7,6 @@ type Car {
     name: String!
 }
 
-scalar Upload
-
 type FileUploadResult {
   id: String!
 }

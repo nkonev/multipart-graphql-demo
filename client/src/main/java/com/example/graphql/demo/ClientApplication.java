@@ -1,12 +1,12 @@
 package com.example.graphql.demo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import graphql.schema.GraphQLScalarType;
+import name.nkonev.multipart.spring.graphql.coercing.webflux.UploadCoercing;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.graphql.client.HttpGraphQlClient;
+import org.springframework.graphql.execution.RuntimeWiringConfigurer;
 
 @SpringBootApplication
 public class ClientApplication  {
@@ -17,10 +17,14 @@ public class ClientApplication  {
                 .run(args);
     }
 
-    @Bean
-    public HttpGraphQlClient httpGraphQlClient() {
-        return HttpGraphQlClient.builder().url("http://localhost:8889/graphql").build();
-    }
-
+//    @Bean
+//    public RuntimeWiringConfigurer runtimeWiringConfigurerUpload() {
+//        GraphQLScalarType uploadScalar = GraphQLScalarType.newScalar()
+//                .name("Upload")
+//                .coercing(new UploadCoercing())
+//                .build();
+//
+//        return wiringBuilder -> wiringBuilder.scalar(uploadScalar);
+//    }
 
 }

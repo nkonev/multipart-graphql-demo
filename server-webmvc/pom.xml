@@ -26,7 +26,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-graphql</artifactId>
 		</dependency>
-		<dependency>
+        <dependency>
+            <groupId>name.nkonev.multipart-spring-graphql</groupId>
+            <artifactId>multipart-spring-graphql</artifactId>
+            <version>0.10.6-SNAPSHOT</version>
+        </dependency>
+        <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
@@ -51,11 +56,6 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.12.0</version>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.graphql</groupId>
-            <artifactId>spring-graphql</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
