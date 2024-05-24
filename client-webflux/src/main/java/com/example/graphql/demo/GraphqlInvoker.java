@@ -1,7 +1,7 @@
 package com.example.graphql.demo;
 
-import name.nkonev.multipart.spring.graphql.client.MultipartClientGraphQlRequest;
-import name.nkonev.multipart.spring.graphql.client.MultipartGraphQlWebClient;
+import name.nkonev.multipart.spring.graphql.client.support.MultipartClientGraphQlRequest;
+import name.nkonev.multipart.spring.graphql.client.webflux.MultipartGraphQlWebClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
