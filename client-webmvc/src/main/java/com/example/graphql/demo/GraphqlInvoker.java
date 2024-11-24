@@ -10,6 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import static java.util.Collections.singletonMap;
 
@@ -18,17 +19,18 @@ public class GraphqlInvoker implements CommandLineRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GraphqlInvoker.class);
 
-
     @Autowired
     private MultipartGraphQlRestClient httpGraphQlClient;
 
     @Override
     public void run(String... args) {
-        LOGGER.info("Hello");
+        LOGGER.info("Starting");
         var doc = """
-                mutation FileNUpload($files: [Upload!]) {multiFileUpload(files: $files){id}}
-                """;
-        java.util.Map<String, Object> fileVariables = singletonMap("files", Arrays.asList(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt")));
+                mutation FileNUpload($files: [Upload!]) {
+                    multiFileUpload(files: $files){id}
+                }
+        """;
+        Map<String, Object> fileVariables = singletonMap("files", Arrays.asList(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt")));
         var request = MultipartClientGraphQlRequest.builder()
             .withDocument(doc)
             .withFileVariables(fileVariables)

@@ -1,6 +1,5 @@
 package com.example.graphql.demo;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -87,15 +86,6 @@ public class CarController {
         });
         Flux<Car> carFlux = flux.delayElements(Duration.of(1, ChronoUnit.SECONDS));
         return carFlux;
-    }
-
-    @PostConstruct
-    public void pc() {
-        var logger = LoggerFactory.getLogger(CarController.class);
-//        this.getCarFlux()
-//            .subscribe(car -> {
-//                logger.info("A car generated {}", car);
-//            });
     }
 
     @MutationMapping("carMutation")
