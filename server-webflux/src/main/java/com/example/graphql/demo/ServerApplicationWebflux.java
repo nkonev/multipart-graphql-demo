@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebfluxServerApplication {
+public class ServerApplicationWebflux {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebfluxServerApplication.class, args);
+		SpringApplication.run(ServerApplicationWebflux.class, args);
 	}
 
 }
