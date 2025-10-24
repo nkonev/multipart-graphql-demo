@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static java.util.Collections.singletonMap;
@@ -30,7 +30,7 @@ public class GraphqlInvoker implements CommandLineRunner {
                     multiFileUpload(files: $files){id}
                 }
         """;
-        Map<String, Object> fileVariables = singletonMap("files", Arrays.asList(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt")));
+        Map<String, Object> fileVariables = singletonMap("files", List.of(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt")));
 
         var request = MultipartClientGraphQlRequest.builder()
             .withDocument(doc)
