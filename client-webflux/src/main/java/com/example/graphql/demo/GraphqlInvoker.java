@@ -9,11 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Map;
-
-import static java.util.Collections.singletonMap;
-
 @Component
 public class GraphqlInvoker implements CommandLineRunner {
 
