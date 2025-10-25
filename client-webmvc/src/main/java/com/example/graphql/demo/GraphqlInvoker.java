@@ -9,6 +9,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+import static java.util.Collections.singletonMap;
+
 @Component
 public class GraphqlInvoker implements CommandLineRunner {
 
@@ -26,7 +30,7 @@ public class GraphqlInvoker implements CommandLineRunner {
                     multiFileUpload(files: $files){id}
                 }
             """)
-            .withFileVariables(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt"))
+            .withFileVariables(singletonMap("files", List.of(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt"))))
             .build();
         var response = httpGraphQlClient.executeFileUpload("http://localhost:8889/graphql", request);
         LOGGER.info("Response is {}", response);
