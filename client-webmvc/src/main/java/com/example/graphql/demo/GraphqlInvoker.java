@@ -25,15 +25,13 @@ public class GraphqlInvoker implements CommandLineRunner {
     @Override
     public void run(String... args) {
         LOGGER.info("Starting");
-        var doc = """
+        var request = MultipartClientGraphQlRequest.builder()
+            .withDocument("""
                 mutation FileNUpload($files: [Upload!]) {
                     multiFileUpload(files: $files){id}
                 }
-        """;
-        Map<String, Object> fileVariables = singletonMap("files", List.of(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt")));
-        var request = MultipartClientGraphQlRequest.builder()
-            .withDocument(doc)
-            .withFileVariables(fileVariables)
+            """)
+            .withFileVariables(new ClassPathResource("/foo.txt"), new ClassPathResource("/bar.txt"))
             .build();
         var response = httpGraphQlClient.executeFileUpload("http://localhost:8889/graphql", request);
         LOGGER.info("Response is {}", response);
